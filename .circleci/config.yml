@@ -4,7 +4,7 @@ jobs:
     docker:
       - image: cimg/node:14.10.1 # the primary container, where your job's comm
         environment:
-          DATABASEURL: postgres://psqluser:psqlpassword@localhost:5432/psdb
+          DATABASE_URL: postgres://psqluser:psqlpassword@localhost:5432/psdb
           JWT_SECRET: secret
           API_PORT: 3000
           API_HOST: localhost
