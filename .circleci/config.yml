@@ -1,11 +1,9 @@
- version: 2.1
+workflows:
+version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/node:14.10.1 # the primary container, where your job's comm>
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var referen>
+      - image: cimg/node:14.10.1 # the primary container, where your job's comm
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
