@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: 'cimg/node:12' # the primary container, where your job's comm
+      - image: cimg/node:12.0.0 # the primary container, where your job's comm
         environment:
           DATABASE_URL: postgres://psqluser:psqlpassword@localhost:5432/psdb
           JWT_SECRET: secret
@@ -10,7 +10,7 @@ jobs:
           API_PORT: 3000
           API_HOST: localhost
           API_PROTOCOL: http
-         auth:
+        auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
       - image: circleci/postgres:9.6.2-alpine
