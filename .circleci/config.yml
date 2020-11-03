@@ -1,5 +1,5 @@
 version: 2.1
- jobs:
+jobs:
    build:
      docker:
        - image: 'cimg/node:12' # the primary container, where your job's comm
