@@ -1,0 +1,31 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12 # the primary container, where your job's comm
+        environment:
+          DATABASE_URL: postgres://psqluser:psqlpassword@localhost:5432/psdb
+          JWT_SECRET: secretJwt
+          API_PORT: 3000
+          API_HOST: localhost
+          API_PROTOCOL: http
+      - image: 'circleci/postgres:9.6.2-alpine'
+        environment:
+          POSTGRES_USER: psqluser
+          POSTGRES_PASSWORD: psqlpassword
+          POSTGRES_DB: psdb
+    steps:
+      - checkout # check out the code in the project directory
+      - restore_cache:
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+      - run: yarn global add node-gyp && yarn install
+      - run: yarn global add node-gyp && yarn install
+      - run: yarn lint
+      - run: yarn format --check
+      - run: yarn test:ci
+      - run: yarn test:e2e
+      - run: yarn start
+      - save_cache:
+          key: yarn-packages-{{ checksum "yarn.lcok" }}
+          paths:
+            - ./node_modules
