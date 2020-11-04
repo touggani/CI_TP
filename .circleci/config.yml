@@ -24,7 +24,7 @@ jobs:
       - run: yarn format --check
       - run: yarn test:ci
       - run: yarn test:e2e
-      - run: yarn buld:doc
+      - run: yarn build:doc
       - save_cache:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
